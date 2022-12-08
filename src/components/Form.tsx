@@ -2,24 +2,13 @@ import { TextField, Button } from '@mui/material'
 import React, { useState } from 'react'
 import { styled } from '@mui/material/styles'
 
-const Wrapper = styled('div')(({ theme }) => ({
-  maxWidth: '100%',
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  [theme.breakpoints.up('md')]: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    width: '100%'
-  }
-}))
 const Row = styled('div')(({ theme }) => ({
   display: 'flex',
   maxWidth: '100%',
   flexDirection: 'column',
   margin: '5px',
   gap: '5px',
-  [theme.breakpoints.up('md')]: {
+  [theme.breakpoints.up('lg')]: {
     flexDirection: 'row',
     justifyContent: 'center',
     width: '800px'
@@ -29,7 +18,7 @@ const Row = styled('div')(({ theme }) => ({
 const Coll = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
-  [theme.breakpoints.up('md')]: {
+  [theme.breakpoints.up('lg')]: {
     flexDirection: 'row',
     justifyContent: 'center',
     width: '100%'
@@ -59,7 +48,6 @@ const FormSubmit = (props: any) => {
   }
   /* export default function BasicForm({children} : {children:string}){ */
   return (
-    <Wrapper>
       <form onSubmit={onSubmitForm}>
         <Row>
             <TextField
@@ -126,7 +114,6 @@ const FormSubmit = (props: any) => {
           </Button>
         </Row>
       </form>
-    </Wrapper>
   )
 }
 
