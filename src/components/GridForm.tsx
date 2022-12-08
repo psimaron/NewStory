@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { styled } from '@mui/material/styles'
 
 const Wrapper = styled('div')({
-  maxWidth: '600px',
+  maxWidth: 600,
   display: 'grid',
   flexGrow: '1'
 })
@@ -47,7 +47,7 @@ const GridFormSubmit = (props: any) => {
               onChange={handleInputChange}
             ></TextField>
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} sm={6}>
             <TextField
               sx={{ width: '100%' }}
               id="outlined-basic"
@@ -58,7 +58,7 @@ const GridFormSubmit = (props: any) => {
               onChange={handleInputChange}
             ></TextField>
           </Grid>
-          <Grid xs={12} md={6} item>
+          <Grid xs={12} sm={6} item>
             <TextField
               sx={{ width: '100%' }}
               id="outlined-basic"
@@ -69,7 +69,7 @@ const GridFormSubmit = (props: any) => {
               onChange={handleInputChange}
             ></TextField>
           </Grid>
-          <Grid xs={12} md={6} item>
+          <Grid xs={12} sm={6} item>
             <TextField
               sx={{ width: '100%' }}
               id="outlined-basic"
@@ -80,7 +80,7 @@ const GridFormSubmit = (props: any) => {
               onChange={handleInputChange}
             ></TextField>
           </Grid>
-          <Grid xs={12} md={6} item>
+          <Grid xs={12} sm={6} item>
             <TextField
               sx={{ width: '100%' }}
               id="outlined-basic"

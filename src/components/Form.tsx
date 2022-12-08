@@ -3,35 +3,36 @@ import React, { useState } from 'react'
 import { styled } from '@mui/material/styles'
 
 const Wrapper = styled('div')(({ theme }) => ({
-  alignItems: 'center',
-  maxWidth: '800px',
-  maxHeight: '300px',
+  maxWidth: '100%',
   display: 'flex',
-  justifyContent: 'center',
   flexDirection: 'column',
-  rowGap: '10px',
-  columnGap: '10px',
-  [theme.breakpoints.down('md')]: {
-    display: 'block'
+  justifyContent: 'center',
+  [theme.breakpoints.up('md')]: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    width: '100%'
   }
 }))
 const Row = styled('div')(({ theme }) => ({
   display: 'flex',
-  flexDirection: 'row',
-  width: '100%',
-  [theme.breakpoints.down('md')]: {
-    display: 'block'
+  maxWidth: '100%',
+  flexDirection: 'column',
+  margin: '5px',
+  gap: '5px',
+  [theme.breakpoints.up('md')]: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    width: '800px'
   }
 }))
 
 const Coll = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
-  flexBasis: '100%',
-  flex: '1',
-  margin: '5px',
-  [theme.breakpoints.down('md')]: {
-    display: 'block'
+  [theme.breakpoints.up('md')]: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    width: '100%'
   }
 }))
 
@@ -61,8 +62,8 @@ const FormSubmit = (props: any) => {
     <Wrapper>
       <form onSubmit={onSubmitForm}>
         <Row>
-          <Coll>
             <TextField
+              sx={{ width: '100%' }}
               id="outlined-basic"
               name="street"
               label="Street address"
@@ -70,11 +71,11 @@ const FormSubmit = (props: any) => {
               value={values.street}
               onChange={handleInputChange}
             ></TextField>
-          </Coll>
         </Row>
         <Row>
           <Coll>
             <TextField
+              sx={{ width: '100%' }}
               id="outlined-basic"
               name="city"
               label="City"
@@ -85,6 +86,7 @@ const FormSubmit = (props: any) => {
           </Coll>
           <Coll>
             <TextField
+              sx={{ width: '100%' }}
               id="outlined-basic"
               name="region"
               label="State/Region"
@@ -97,6 +99,7 @@ const FormSubmit = (props: any) => {
         <Row>
           <Coll>
             <TextField
+              sx={{ width: '100%' }}
               id="outlined-basic"
               name="zip"
               label="Zip"
@@ -107,6 +110,7 @@ const FormSubmit = (props: any) => {
           </Coll>
           <Coll>
             <TextField
+              sx={{ width: '100%' }}
               id="outlined-basic"
               name="country"
               label="Country"
@@ -116,11 +120,11 @@ const FormSubmit = (props: any) => {
             ></TextField>
           </Coll>
         </Row>
-        <Coll>
-          <Button type="submit" variant="outlined">
+        <Row>
+          <Button sx={{ width: '100%' }} type="submit" variant="outlined">
             {label}
           </Button>
-        </Coll>
+        </Row>
       </form>
     </Wrapper>
   )
