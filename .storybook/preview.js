@@ -1,11 +1,10 @@
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import theme from "../src/themes/Theme";
 
-
 export const withMuiTheme = (Story) => (
   <ThemeProvider theme={theme}>
-    <CssBaseline/>
-    <Story/>
+    <CssBaseline />
+    <Story />
   </ThemeProvider>
 );
 
@@ -19,4 +18,4 @@ export const parameters = {
       date: /Date$/,
     },
   },
-}
+};

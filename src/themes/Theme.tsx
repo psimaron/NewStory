@@ -7,22 +7,10 @@ const theme = createTheme({
       main: blue[800]
     },
     secondary: {
-      main: amber[500]
+      main: amber[500],
+      light: 'white'
     }
-
   }
 })
 
-/* declare module '@mui/material/styles' {
-    interface Theme {
-        status: {
-            danger:string;
-        };
-    }
-    interface ThemeOptions {
-    status?:{
-        danger?: string;
-    };
-}};
-*/
 export default theme

@@ -23,18 +23,20 @@ export default function DropDown (props: any) {
   }))
 
   return (
-      <FormControl fullWidth>
-        <InputLabel>Age</InputLabel>
-        <Select
-          value={name}
-          label="Name"
-          onChange={handleChange}
-          input = {<StyledInput />}
-        >
-          {props.options.map((option: string) =>
-          <MenuItem value={option} key={Math.random()}>{option}</MenuItem>
-          )}
-        </Select>
-      </FormControl>
+    <FormControl fullWidth>
+      <InputLabel>Age</InputLabel>
+      <Select
+        value={name}
+        label="Name"
+        onChange={handleChange}
+        input={<StyledInput />}
+      >
+        {props.options.map((option: string) => (
+          <MenuItem value={option} key={Math.random()}>
+            {option}
+          </MenuItem>
+        ))}
+      </Select>
+    </FormControl>
   )
 }

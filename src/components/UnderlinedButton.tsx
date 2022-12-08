@@ -1,20 +1,20 @@
 import Button from '@mui/material/Button'
 import { styled } from '@mui/material/styles'
 
-export const UnderlinedButtons = styled(Button, {
+const UnderlinedButtons = styled((Button), {
   shouldForwardProp: (prop) => prop !== 'variant'
-})(() => ({
-  border: '2px solid',
-  borderColor: 'transparent',
+})(({ theme }) => ({
+  color: theme.palette.primary.main,
+  borderBottom: '3px solid',
   borderBottomColor: 'blue',
   borderRadius: 1,
-  borderBottomWidth: 3,
   fontSize: 15,
   fontWeight: 'bold',
   '&:hover': {
-    backgroundColor: 'red'
+    borderBottomColor: theme.palette.secondary.main,
+    backgroundColor: theme.palette.secondary.light,
+    boxShadow: '0 2px gray'
   }
 }))
 
-/* export const UnderlinedButton = (props: ButtonProps) => <Button variant='contained' {...props}/>
-; */
+export default UnderlinedButtons

@@ -22,7 +22,6 @@ const Row = styled('div')(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
     display: 'block'
   }
-
 }))
 
 const Coll = styled('div')(({ theme }) => ({
@@ -53,76 +52,77 @@ const FormSubmit = (props: any) => {
   }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setValues(prevValues => {
+    setValues((prevValues) => {
       return { ...prevValues, [e.target.name]: e.target.value }
     })
   }
   /* export default function BasicForm({children} : {children:string}){ */
   return (
-
-<Wrapper>
-<form onSubmit={onSubmitForm}>
-<Row>
-<Coll>
-<TextField
-    id="outlined-basic"
-    name='street'
-    label="Street address"
-    variant="outlined"
-    value={values.street}
-    onChange={handleInputChange}>
-</TextField>
-</Coll>
-</Row>
-<Row>
-<Coll>
-<TextField
-    id="outlined-basic"
-    name= 'city'
-    label="City"
-    variant="outlined"
-    value={values.city}
-onChange={handleInputChange}>
-</TextField>
-</Coll>
-<Coll>
-<TextField
-    id="outlined-basic"
-    name='region'
-    label="State/Region"
-    variant="outlined"
-    value={values.region}
-    onChange={handleInputChange}>
-</TextField>
-</Coll>
-</Row>
-<Row>
-<Coll>
-<TextField
-    id="outlined-basic"
-    name='zip' label="Zip"
-    variant="outlined"
-    value={values.zip}
-    onChange={handleInputChange}>
-</TextField>
-</Coll>
-<Coll>
-<TextField
-    id="outlined-basic"
-    name='country' label="Country"
-    variant="outlined"
-    value={values.country}
-    onChange={handleInputChange}>
-</TextField>
-</Coll>
-</Row>
-<Coll>
-
-<Button type="submit" variant="outlined">{label}</Button>
-
-</Coll>
-</form>
-</Wrapper>
+    <Wrapper>
+      <form onSubmit={onSubmitForm}>
+        <Row>
+          <Coll>
+            <TextField
+              id="outlined-basic"
+              name="street"
+              label="Street address"
+              variant="outlined"
+              value={values.street}
+              onChange={handleInputChange}
+            ></TextField>
+          </Coll>
+        </Row>
+        <Row>
+          <Coll>
+            <TextField
+              id="outlined-basic"
+              name="city"
+              label="City"
+              variant="outlined"
+              value={values.city}
+              onChange={handleInputChange}
+            ></TextField>
+          </Coll>
+          <Coll>
+            <TextField
+              id="outlined-basic"
+              name="region"
+              label="State/Region"
+              variant="outlined"
+              value={values.region}
+              onChange={handleInputChange}
+            ></TextField>
+          </Coll>
+        </Row>
+        <Row>
+          <Coll>
+            <TextField
+              id="outlined-basic"
+              name="zip"
+              label="Zip"
+              variant="outlined"
+              value={values.zip}
+              onChange={handleInputChange}
+            ></TextField>
+          </Coll>
+          <Coll>
+            <TextField
+              id="outlined-basic"
+              name="country"
+              label="Country"
+              variant="outlined"
+              value={values.country}
+              onChange={handleInputChange}
+            ></TextField>
+          </Coll>
+        </Row>
+        <Coll>
+          <Button type="submit" variant="outlined">
+            {label}
+          </Button>
+        </Coll>
+      </form>
+    </Wrapper>
   )
 }
 
