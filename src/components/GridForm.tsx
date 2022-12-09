@@ -8,7 +8,7 @@ const Wrapper = styled('div')({
   flexGrow: '1'
 })
 
-export interface ValueTypes {
+interface ValueTypes {
   street?: string
   city?: string
   region?: string
@@ -17,7 +17,9 @@ export interface ValueTypes {
   label?: string
   onFormSubmit: Function
 }
-
+/**
+ * returns a form styled by the grid system with fields for user input
+*/
 const GridFormSubmit = (props: ValueTypes) => {
   const { label = 'Submit' } = props
 
@@ -33,7 +35,14 @@ const GridFormSubmit = (props: ValueTypes) => {
     e.preventDefault()
     props.onFormSubmit(values)
   }
-
+  /** The form accepts the values from the input of the user.
+ * There is also a default label if there isn't a provided one.
+ * @param {string} props.street Name of the street
+ * @param {string} props.city Name of the city
+ * @param {string} props.region Name of the region
+ * @param {string} props.zip Zip code of the country
+ * @param {string} props.country Name of the country
+ */
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValues((prevValues) => {
       return { ...prevValues, [e.target.name]: e.target.value }
