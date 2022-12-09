@@ -3,12 +3,22 @@ import React, { useState } from 'react'
 import { styled } from '@mui/material/styles'
 
 const Wrapper = styled('div')({
-  maxWidth: 600,
+  width: '100%',
   display: 'grid',
   flexGrow: '1'
 })
 
-const GridFormSubmit = (props: any) => {
+export interface ValueTypes {
+  street?: string
+  city?: string
+  region?: string
+  zip?: string
+  country?: string
+  label?: string
+  onFormSubmit: Function
+}
+
+const GridFormSubmit = (props: ValueTypes) => {
   const { label = 'Submit' } = props
 
   const [values, setValues] = useState({
@@ -21,7 +31,7 @@ const GridFormSubmit = (props: any) => {
 
   const onSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log(values)
+    props.onFormSubmit(values)
   }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,16 +40,14 @@ const GridFormSubmit = (props: any) => {
     })
   }
 
-  /* const MyInput = () => <div></div> */
-  /* export default function BasicForm({children} : {children:string}){ */
   return (
     <Wrapper>
       <form onSubmit={onSubmitForm}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <TextField
-              sx={{ width: '100%' }}
-              id="outlined-basic"
+              fullWidth
+              id="Street"
               name="street"
               label="Street address"
               variant="outlined"
@@ -47,10 +55,10 @@ const GridFormSubmit = (props: any) => {
               onChange={handleInputChange}
             ></TextField>
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} md={6}>
             <TextField
-              sx={{ width: '100%' }}
-              id="outlined-basic"
+              fullWidth
+              id="City"
               name="city"
               label="City"
               variant="outlined"
@@ -58,10 +66,10 @@ const GridFormSubmit = (props: any) => {
               onChange={handleInputChange}
             ></TextField>
           </Grid>
-          <Grid xs={12} sm={6} item>
+          <Grid xs={12} md={6} item>
             <TextField
-              sx={{ width: '100%' }}
-              id="outlined-basic"
+              fullWidth
+              id="Region"
               name="region"
               label="State/Region"
               variant="outlined"
@@ -69,10 +77,10 @@ const GridFormSubmit = (props: any) => {
               onChange={handleInputChange}
             ></TextField>
           </Grid>
-          <Grid xs={12} sm={6} item>
+          <Grid xs={12} md={6} item>
             <TextField
-              sx={{ width: '100%' }}
-              id="outlined-basic"
+              fullWidth
+              id="Zip"
               name="zip"
               label="Zip"
               variant="outlined"
@@ -80,10 +88,10 @@ const GridFormSubmit = (props: any) => {
               onChange={handleInputChange}
             ></TextField>
           </Grid>
-          <Grid xs={12} sm={6} item>
+          <Grid xs={12} md={6} item>
             <TextField
-              sx={{ width: '100%' }}
-              id="outlined-basic"
+              fullWidth
+              id="Contry"
               name="country"
               label="Country"
               variant="outlined"

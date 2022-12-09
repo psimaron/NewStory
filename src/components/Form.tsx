@@ -51,8 +51,8 @@ const FormSubmit = (props: any) => {
       <form onSubmit={onSubmitForm}>
         <Row>
             <TextField
-              sx={{ width: '100%' }}
-              id="outlined-basic"
+              fullWidth
+              id="Street"
               name="street"
               label="Street address"
               variant="outlined"
@@ -63,8 +63,8 @@ const FormSubmit = (props: any) => {
         <Row>
           <Coll>
             <TextField
-              sx={{ width: '100%' }}
-              id="outlined-basic"
+              fullWidth
+              id="City"
               name="city"
               label="City"
               variant="outlined"
@@ -74,8 +74,8 @@ const FormSubmit = (props: any) => {
           </Coll>
           <Coll>
             <TextField
-              sx={{ width: '100%' }}
-              id="outlined-basic"
+              fullWidth
+              id="Region"
               name="region"
               label="State/Region"
               variant="outlined"
@@ -87,8 +87,8 @@ const FormSubmit = (props: any) => {
         <Row>
           <Coll>
             <TextField
-              sx={{ width: '100%' }}
-              id="outlined-basic"
+              fullWidth
+              id="Zip"
               name="zip"
               label="Zip"
               variant="outlined"
@@ -98,8 +98,8 @@ const FormSubmit = (props: any) => {
           </Coll>
           <Coll>
             <TextField
-              sx={{ width: '100%' }}
-              id="outlined-basic"
+              fullWidth
+              id="Country"
               name="country"
               label="Country"
               variant="outlined"
