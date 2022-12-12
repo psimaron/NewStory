@@ -40,10 +40,11 @@ const FormSubmit = (props: any) => {
 
   const onSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log(values)
+    props.onFormSubmit(values)
   }
   /** The form accepts the values from the input of the user.
  * There is also a default label if there isn't a provided one.
+ * @param {string} props.label Label of the form
  * @param {string} props.street Name of the street
  * @param {string} props.city Name of the city
  * @param {string} props.region Name of the region
@@ -55,7 +56,7 @@ const FormSubmit = (props: any) => {
       return { ...prevValues, [e.target.name]: e.target.value }
     })
   }
-  /* export default function BasicForm({children} : {children:string}){ */
+
   return (
       <form onSubmit={onSubmitForm}>
         <Row>

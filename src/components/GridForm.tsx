@@ -30,13 +30,17 @@ const GridFormSubmit = (props: ValueTypes) => {
     zip: '',
     country: ''
   })
-
+  /**
+ * This is a function that gets the information from the form and passes it to the parent component
+ * @callback onSubmitForm
+ */
   const onSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     props.onFormSubmit(values)
   }
   /** The form accepts the values from the input of the user.
  * There is also a default label if there isn't a provided one.
+ * @param {string} props.label Label of the form
  * @param {string} props.street Name of the street
  * @param {string} props.city Name of the city
  * @param {string} props.region Name of the region
