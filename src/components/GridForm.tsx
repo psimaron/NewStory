@@ -22,7 +22,7 @@ interface AdressForm {
 */
 const GridFormSubmit = (props: AdressForm) => {
   const { label = 'Submit' } = props
-  const defaultValues = {
+  const defaultAdress = {
     street: 'First street',
     city: 'Coln',
     region: 'Eastern Europe',
@@ -30,7 +30,7 @@ const GridFormSubmit = (props: AdressForm) => {
     country: 'Romania'
   }
 
-  const [values, setValues] = useState(defaultValues)
+  const [values, setValues] = useState(defaultAdress)
   /**
  * This is a function that gets the information
  * from the form and passes it to the parent component
