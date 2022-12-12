@@ -8,7 +8,7 @@ const Wrapper = styled('div')({
   flexGrow: '1'
 })
 
-interface ValueTypes {
+interface AdressForm {
   street?: string
   city?: string
   region?: string
@@ -20,19 +20,24 @@ interface ValueTypes {
 /**
  * returns a form styled by the grid system with fields for user input
 */
-const GridFormSubmit = (props: ValueTypes) => {
+const GridFormSubmit = (props: AdressForm) => {
   const { label = 'Submit' } = props
 
-  const [values, setValues] = useState({
-    street: '',
-    city: '',
-    region: '',
-    zip: '',
-    country: ''
-  })
+  const defaultValues = {
+    street: 'First street',
+    city: 'Coln',
+    region: 'Eastern Europe',
+    zip: '101 Oho',
+    country: 'Romania'
+  }
+
+  const [values, setValues] = useState(defaultValues)
   /**
  * This is a function that gets the information from the form and passes it to the parent component
+ * as an object. Prevents the default browser behaviour.
  * @callback onSubmitForm
+ * The parameters are of type: string, they are received from the input of the user or if not provided,
+ * they are passed by the @default defaultValues
  */
   const onSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -75,7 +80,7 @@ const GridFormSubmit = (props: ValueTypes) => {
               name="city"
               label="City"
               variant="outlined"
-              value={values.city}
+              defaultValue={values.city}
               onChange={handleInputChange}
             ></TextField>
           </Grid>
@@ -86,7 +91,7 @@ const GridFormSubmit = (props: ValueTypes) => {
               name="region"
               label="State/Region"
               variant="outlined"
-              value={values.region}
+              defaultValue={values.region}
               onChange={handleInputChange}
             ></TextField>
           </Grid>
@@ -97,7 +102,7 @@ const GridFormSubmit = (props: ValueTypes) => {
               name="zip"
               label="Zip"
               variant="outlined"
-              value={values.zip}
+              defaultValue={values.zip}
               onChange={handleInputChange}
             ></TextField>
           </Grid>
@@ -108,7 +113,7 @@ const GridFormSubmit = (props: ValueTypes) => {
               name="country"
               label="Country"
               variant="outlined"
-              value={values.country}
+              defaultValue={values.country}
               onChange={handleInputChange}
             ></TextField>
           </Grid>
