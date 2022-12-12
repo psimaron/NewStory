@@ -4,10 +4,11 @@ import React from 'react'
 
 const LogInfo = (props: Object) => {
   const MyPromise = new Promise((resolve, reject) => {
+    const myProperties = props
     setTimeout(() => {
       const error = false
       if (!error) {
-        resolve(console.log(props))
+        resolve(console.log(myProperties))
       } else {
         reject(new Error('Error'))
       }
