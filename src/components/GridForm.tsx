@@ -9,13 +9,13 @@ const Wrapper = styled('div')({
 })
 
 interface FormProps {
-  defaultValues?: Adress | null
+  defaultValues?: Address | null
   label?: string
   onFormSubmit: Function
   loading: boolean
 }
 
-export interface Adress {
+export interface Address {
   street?: string
   city?: string
   region?: string
@@ -34,7 +34,7 @@ const GridFormSubmit = (props: FormProps) => {
   if (props.loading) {
     label = 'Loading'
   }
-  const [values, setValues] = useState <Adress | undefined>({ street: '', city: '', region: '', zip: '', country: '' })
+  const [values, setValues] = useState<Address | undefined>({ street: '', city: '', region: '', zip: '', country: '' })
 
   useEffect(() => {
     if (props.defaultValues !== null) {

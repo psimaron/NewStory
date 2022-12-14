@@ -1,14 +1,13 @@
 import { Meta } from '@storybook/react'
-import GridFormSubmit, { Adress } from '../components/GridForm'
+import GridFormSubmit, { Address } from '../components/GridForm'
 import React, { useState, useEffect } from 'react'
 
-const logInfo = (props: Adress) => {
+const logInfo = (props: Address) => {
   const MyPromise = new Promise((resolve, reject) => {
-    const myProperties = props
     setTimeout(() => {
       const error = false
       if (!error) {
-        resolve(console.log(myProperties))
+        resolve(console.log(props))
       } else {
         reject(new Error('Error'))
       }
@@ -45,15 +44,14 @@ export const FormWithDefaultValues = () => {
   useEffect(() => {
     setLoading(true)
     getInfo()
-      // We hate the any type! What's the type of the response and is it possible to reuse the type?
-      .then((res: any) => setValues(res))
+      .then((res: Address) => setValues(res))
       .catch(() => setError(true))
       .finally(() => setLoading(false))
   }, [])
   if (error) {
     return <main>An error has ocurred</main>
   }
-  const handleSubmit = () => {
+  const handleSubmit = (values: Address) => {
     logInfo(values)
     if (error) {
       console.log(error)
