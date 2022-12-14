@@ -34,7 +34,7 @@ const GridFormSubmit = (props: FormProps) => {
   if (props.loading) {
     label = 'Loading'
   }
-  const [values, setValues] = useState <Adress | undefined>()
+  const [values, setValues] = useState <Adress | undefined>({ street: '', city: '', region: '', zip: '', country: '' })
 
   useEffect(() => {
     if (props.defaultValues !== null) {
