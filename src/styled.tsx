@@ -1,6 +1,6 @@
-import { createStyled } from '@mui/system'
-import theme from './themes/Theme'
+import { createStyled } from '@mui/system';
+import theme from './themes/Theme';
 
-const styled = createStyled({ defaultTheme: theme })
+const styled = createStyled({ defaultTheme: theme });
 
-export default styled
+export default styled;

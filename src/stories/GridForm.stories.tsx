@@ -1,35 +1,36 @@
-import { Meta } from '@storybook/react'
-import GridFormSubmit, { Address } from '../components/GridForm'
-import React, { useState, useEffect } from 'react'
+import { Meta } from '@storybook/react';
+import GridFormSubmit, { Address } from '../components/GridForm';
+import React, { useState, useEffect } from 'react';
 
 const logInfo = (props: Address) => {
   const MyPromise = new Promise((resolve, reject) => {
     setTimeout(() => {
-      const error = false
+      const error = false;
       if (!error) {
-        resolve(console.log(props))
+        resolve(console.log(props));
       } else {
-        reject(new Error('Error'))
+        reject(new Error('Error'));
       }
-    }, 5000)
-  })
-  MyPromise
-    .then()
-    .catch(err => console.log(err))
-}
+    }, 5000);
+  });
+  MyPromise.then().catch((err) => console.log(err));
+};
 const getInfo = async () => {
   const promise = new Promise((resolve, reject) => {
-    setTimeout(() => resolve({
-      street: 'Vitosha 100',
-      city: 'Sofia',
-      region: 'Sofia',
-      zip: '1000',
-      country: 'Bulgaria'
-    })
-    , 3000)
-  })
-  return await promise.catch(err => console.log(err))
-}
+    setTimeout(
+      () =>
+        resolve({
+          street: 'Vitosha 100',
+          city: 'Sofia',
+          region: 'Sofia',
+          zip: '1000',
+          country: 'Bulgaria',
+        }),
+      3000,
+    );
+  });
+  return await promise.catch((err) => console.log(err));
+};
 
 export const FormWithDefaultValues = () => {
   const [values, setValues] = useState({
@@ -37,32 +38,38 @@ export const FormWithDefaultValues = () => {
     city: '',
     region: '',
     zip: '',
-    country: ''
-  })
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(false)
+    country: '',
+  });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     getInfo()
-      .then((res: Address) => setValues(res))
+      .then((res: any) => setValues(res))
       .catch(() => setError(true))
-      .finally(() => setLoading(false))
-  }, [])
+      .finally(() => setLoading(false));
+  }, []);
   if (error) {
-    return <main>An error has ocurred</main>
+    return <main>An error has ocurred</main>;
   }
   const handleSubmit = (values: Address) => {
-    logInfo(values)
+    logInfo(values);
     if (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
-  return <GridFormSubmit onFormSubmit={handleSubmit} defaultValues={values} loading={loading}/>
-}
+  };
+  return (
+    <GridFormSubmit
+      onFormSubmit={handleSubmit}
+      defaultValues={values}
+      loading={loading}
+    />
+  );
+};
 
 const meta: Meta = {
   title: 'GridForm',
-  component: GridFormSubmit
-}
+  component: GridFormSubmit,
+};
 
-export default meta
+export default meta;

@@ -1,5 +1,5 @@
-import { CssBaseline, ThemeProvider } from "@mui/material";
-import theme from "../src/themes/Theme";
+import { CssBaseline, ThemeProvider } from '@mui/material';
+import theme from '../src/themes/Theme';
 
 export const withMuiTheme = (Story) => (
   <ThemeProvider theme={theme}>
@@ -11,7 +11,7 @@ export const withMuiTheme = (Story) => (
 export const decorators = [withMuiTheme];
 
 export const parameters = {
-  actions: { argTypesRegex: "^on[A-Z].*" },
+  actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
     matchers: {
       color: /(background|color)$/i,

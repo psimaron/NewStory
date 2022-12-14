@@ -1,17 +1,17 @@
-import React, { useState } from 'react'
-import InputLabel from '@mui/material/InputLabel'
-import MenuItem from '@mui/material/MenuItem'
-import FormControl from '@mui/material/FormControl'
-import Select, { SelectChangeEvent } from '@mui/material/Select'
-import InputBase from '@mui/material/InputBase'
-import { styled } from '@mui/material/styles'
+import React, { useState } from 'react';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import InputBase from '@mui/material/InputBase';
+import { styled } from '@mui/material/styles';
 
-export default function DropDown (props: any) {
-  const [name, setName] = useState('')
+export default function DropDown(props: any) {
+  const [name, setName] = useState('');
 
   const handleChange = (event: SelectChangeEvent) => {
-    setName(event.target.value)
-  }
+    setName(event.target.value);
+  };
   const StyledInput = styled(InputBase)({
     height: '37px',
     border: '1px solid black',
@@ -19,15 +19,15 @@ export default function DropDown (props: any) {
       '& .MuiList-root': {
         '& .MuiButtonBase-root': {
           '&:hover': {
-            backgroundColor: 'red'
-          }
-        }
-      }
-    }
-  })
+            backgroundColor: 'red',
+          },
+        },
+      },
+    },
+  });
 
   return (
-    <FormControl variant='outlined' fullWidth>
+    <FormControl variant="outlined" fullWidth>
       <InputLabel>Age</InputLabel>
       <Select
         value={name}
@@ -42,5 +42,5 @@ export default function DropDown (props: any) {
         ))}
       </Select>
     </FormControl>
-  )
+  );
 }

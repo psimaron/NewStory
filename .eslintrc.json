@@ -3,7 +3,13 @@
     "browser": true,
     "es2021": true
   },
-  "extends": ["plugin:react/recommended", "standard-with-typescript"],
+  "extends": [
+    "plugin:react/recommended",
+    "standard-with-typescript",
+    "airbnb",
+    "airbnb/hooks",
+    "prettier"
+  ],
   "overrides": [],
   "parserOptions": {
     "ecmaVersion": "latest",
@@ -11,8 +17,11 @@
     "project": ["tsconfig.json"]
   },
 
-  "plugins": ["react"],
-  "rules": { "@typescript-eslint/explicit-function-return-type": "off" },
+  "plugins": ["prettier"],
+  "rules": {
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "prettier/prettier": "error"
+  },
   "settings": {
     "react": {
       "version": "detect"
