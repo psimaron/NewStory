@@ -12,18 +12,22 @@ export default function DropDown (props: any) {
   const handleChange = (event: SelectChangeEvent) => {
     setName(event.target.value)
   }
-  const StyledInput = styled(InputBase)(({ theme }) => ({
-    '& .MuiInputBase-input': {
-      '& MuiButtonBase-root': {
-        '&:hover': {
-          backgroundColor: 'red'
+  const StyledInput = styled(InputBase)({
+    height: '37px',
+    border: '1px solid black',
+    '& .MuiPaper-root': {
+      '& .MuiList-root': {
+        '& .MuiButtonBase-root': {
+          '&:hover': {
+            backgroundColor: 'red'
+          }
         }
       }
     }
-  }))
+  })
 
   return (
-    <FormControl fullWidth>
+    <FormControl variant='outlined' fullWidth>
       <InputLabel>Age</InputLabel>
       <Select
         value={name}

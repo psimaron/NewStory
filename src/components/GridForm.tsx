@@ -1,5 +1,5 @@
-import { TextField, Button, Grid } from '@mui/material'
-import React, { useState } from 'react'
+import { TextField, Button, Grid, CircularProgress, Box } from '@mui/material'
+import React, { useState, useEffect } from 'react'
 import { styled } from '@mui/material/styles'
 
 const Wrapper = styled('div')({
@@ -8,29 +8,40 @@ const Wrapper = styled('div')({
   flexGrow: '1'
 })
 
-interface AdressForm {
-  street?: string
-  city?: string
-  region?: string
-  zip?: string
-  country?: string
+interface FormProps {
+  defaultValues?: Adress | null
   label?: string
   onFormSubmit: Function
+  loading: boolean
 }
+
+export interface Adress {
+  street?: string | ''
+  city?: string | ''
+  region?: string | ''
+  zip?: string | ''
+  country?: string | ''
+}
+
 /**
  * returns a form styled by the grid system with fields for user input
 */
-const GridFormSubmit = (props: AdressForm) => {
-  const { label = 'Submit' } = props
-  const defaultAdress = {
-    street: 'First street',
-    city: 'Coln',
-    region: 'Eastern Europe',
-    zip: '101 Oho',
-    country: 'Romania'
+const GridFormSubmit = (props: FormProps) => {
+  let { label = 'Submit' } = props
+  const StyledButton = styled(Button)({
+    width: '100%'
+  })
+  if (props.loading) {
+    label = 'Loading'
   }
 
-  const [values, setValues] = useState(defaultAdress)
+  const [values, setValues] = useState<Adress | undefined>(undefined)
+
+  useEffect(() => {
+    if (props.defaultValues !== null) {
+      setValues(props.defaultValues)
+    }
+  }, [props.defaultValues])
   /**
  * This is a function that gets the information
  * from the form and passes it to the parent component
@@ -120,9 +131,10 @@ const GridFormSubmit = (props: AdressForm) => {
             ></TextField>
           </Grid>
           <Grid xs={12} md={12} item>
-            <Button type="submit" variant="outlined" style={{ width: '100%' }}>
-              {label}
-            </Button>
+          <StyledButton type="submit" variant="outlined" disabled={props.loading}>{label}</StyledButton>
+          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+          {props.loading && <CircularProgress />}
+          </Box>
           </Grid>
         </Grid>
       </form>
