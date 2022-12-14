@@ -16,11 +16,11 @@ interface FormProps {
 }
 
 export interface Adress {
-  street?: string | ''
-  city?: string | ''
-  region?: string | ''
-  zip?: string | ''
-  country?: string | ''
+  street?: string
+  city?: string
+  region?: string
+  zip?: string
+  country?: string
 }
 
 /**
@@ -34,8 +34,7 @@ const GridFormSubmit = (props: FormProps) => {
   if (props.loading) {
     label = 'Loading'
   }
-
-  const [values, setValues] = useState<Adress | undefined>(undefined)
+  const [values, setValues] = useState <Adress | undefined>()
 
   useEffect(() => {
     if (props.defaultValues !== null) {
@@ -82,7 +81,7 @@ const GridFormSubmit = (props: FormProps) => {
               name="street"
               label="Street address"
               variant="outlined"
-              value={values.street}
+              value={values?.street}
               onChange={handleInputChange}
             ></TextField>
           </Grid>
@@ -93,7 +92,7 @@ const GridFormSubmit = (props: FormProps) => {
               name="city"
               label="City"
               variant="outlined"
-              value={values.city}
+              value={values?.city}
               onChange={handleInputChange}
             ></TextField>
           </Grid>
@@ -104,7 +103,7 @@ const GridFormSubmit = (props: FormProps) => {
               name="region"
               label="State/Region"
               variant="outlined"
-              value={values.region}
+              value={values?.region}
               onChange={handleInputChange}
             ></TextField>
           </Grid>
@@ -115,7 +114,7 @@ const GridFormSubmit = (props: FormProps) => {
               name="zip"
               label="Zip"
               variant="outlined"
-              value={values.zip}
+              value={values?.zip}
               onChange={handleInputChange}
             ></TextField>
           </Grid>
@@ -126,7 +125,7 @@ const GridFormSubmit = (props: FormProps) => {
               name="country"
               label="Country"
               variant="outlined"
-              value={values.country}
+              value={values?.country}
               onChange={handleInputChange}
             ></TextField>
           </Grid>
