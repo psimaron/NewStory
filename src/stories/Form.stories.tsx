@@ -1,6 +1,6 @@
-import { Meta } from '@storybook/react';
-import FormSubmit from '../components/Form';
+/* import { Meta } from '@storybook/react';
 import React from 'react';
+import FormSubmit from '../components/Form';
 
 const LogInfo = (props: string) => {
   console.log(props);
@@ -13,4 +13,8 @@ const meta: Meta = {
 
 export default meta;
 
-export const Form = () => <FormSubmit onFormSubmit={LogInfo}></FormSubmit>;
+export function Form() {
+  return <FormSubmit onFormSubmit={LogInfo} />;
+}
+*/
+export {};

@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/react';
-import StyledButton from '../components/StyledButton';
 import React from 'react';
+import StyledButton from '../components/StyledButton';
 
 const meta: Meta = {
   title: 'StyledButton',
@@ -9,9 +9,9 @@ const meta: Meta = {
 
 export default meta;
 
-export const Default = () => (
-  <StyledButton variant="text">Click me</StyledButton>
-);
-export const Contained = () => (
-  <StyledButton variant="contained">Click me</StyledButton>
-);
+export function Default() {
+  return <StyledButton variant="text">Click me</StyledButton>;
+}
+export function Contained() {
+  return <StyledButton variant="contained">Click me</StyledButton>;
+}

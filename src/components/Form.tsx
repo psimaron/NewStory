@@ -1,4 +1,4 @@
-import { TextField, Button } from '@mui/material';
+/*import { TextField, Button } from '@mui/material';
 import React, { useState } from 'react';
 import { styled } from '@mui/material/styles';
 
@@ -27,7 +27,8 @@ const Coll = styled('div')(({ theme }) => ({
 /**
  * returns a form styled by the grid system with fields for user input
  */
-const FormSubmit = (props: any) => {
+/*
+function FormSubmit(props: any) {
   const { label = 'Submit' } = props;
 
   const [values, setValues] = useState({
@@ -51,10 +52,12 @@ const FormSubmit = (props: any) => {
    * @param {string} props.zip Zip code of the country
    * @param {string} props.country Name of the country
    */
+/*
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setValues((prevValues) => {
-      return { ...prevValues, [e.target.name]: e.target.value };
-    });
+    setValues((prevValues) => ({
+      ...prevValues,
+      [e.target.name]: e.target.value,
+    }));
   };
 
   return (
@@ -68,7 +71,7 @@ const FormSubmit = (props: any) => {
           variant="outlined"
           value={values.street}
           onChange={handleInputChange}
-        ></TextField>
+        />
       </Row>
       <Row>
         <Coll>
@@ -80,7 +83,7 @@ const FormSubmit = (props: any) => {
             variant="outlined"
             value={values.city}
             onChange={handleInputChange}
-          ></TextField>
+          />
         </Coll>
         <Coll>
           <TextField
@@ -91,7 +94,7 @@ const FormSubmit = (props: any) => {
             variant="outlined"
             value={values.region}
             onChange={handleInputChange}
-          ></TextField>
+          />
         </Coll>
       </Row>
       <Row>
@@ -104,7 +107,7 @@ const FormSubmit = (props: any) => {
             variant="outlined"
             value={values.zip}
             onChange={handleInputChange}
-          ></TextField>
+          />
         </Coll>
         <Coll>
           <TextField
@@ -115,7 +118,7 @@ const FormSubmit = (props: any) => {
             variant="outlined"
             value={values.country}
             onChange={handleInputChange}
-          ></TextField>
+          />
         </Coll>
       </Row>
       <Row>
@@ -125,6 +128,8 @@ const FormSubmit = (props: any) => {
       </Row>
     </form>
   );
-};
+}
 
 export default FormSubmit;
+*/
+export {};

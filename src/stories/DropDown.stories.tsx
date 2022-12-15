@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/react';
+/* import { Meta } from '@storybook/react';
 import DropDown from '../components/DropDown';
 import React from 'react';
 
@@ -12,3 +12,5 @@ export default meta;
 export const Drop = () => (
   <DropDown options={['Blue', 'Green', 'Red']}></DropDown>
 );
+*/
+export {};

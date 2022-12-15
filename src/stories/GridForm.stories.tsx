@@ -1,6 +1,6 @@
+import React, { useState, useEffect } from 'react';
 import { Meta } from '@storybook/react';
 import GridFormSubmit, { Address } from '../components/GridForm';
-import React, { useState, useEffect } from 'react';
 
 const logInfo = (props: Address) => {
   const MyPromise = new Promise((resolve, reject) => {
@@ -28,12 +28,13 @@ const getInfo = async () => {
         }),
       3000,
     );
+    setTimeout(() => reject(console.log('hi')), 5000);
   });
-  return await promise.catch((err) => console.log(err));
+  await promise.catch((err) => console.log(err));
 };
 
-export const FormWithDefaultValues = () => {
-  const [values, setValues] = useState({
+export function FormWithDefaultValues() {
+  const [values, setValues] = useState<Address | null>({
     street: '',
     city: '',
     region: '',
@@ -46,7 +47,10 @@ export const FormWithDefaultValues = () => {
     setLoading(true);
     getInfo()
       .then((res: any) => setValues(res))
-      .catch(() => setError(true))
+      .catch(() => {
+        setError(true);
+        setValues(null);
+      })
       .finally(() => setLoading(false));
   }, []);
   if (error) {
@@ -65,7 +69,7 @@ export const FormWithDefaultValues = () => {
       loading={loading}
     />
   );
-};
+}
 
 const meta: Meta = {
   title: 'GridForm',

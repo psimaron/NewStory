@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+/* import React, { useState } from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -35,7 +35,7 @@ export default function DropDown(props: any) {
         onChange={handleChange}
         input={<StyledInput />}
       >
-        {props.options.map((option: string) => (
+        {(props.Red, props.Green, props.Blue).map((option: string) => (
           <MenuItem value={option} key={Math.random()}>
             {option}
           </MenuItem>
@@ -44,3 +44,5 @@ export default function DropDown(props: any) {
     </FormControl>
   );
 }
+*/
+export {};

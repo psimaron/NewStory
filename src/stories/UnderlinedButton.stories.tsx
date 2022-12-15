@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/react';
-import UnderlinedButtons from '../components/UnderlinedButton';
 import React from 'react';
+import UnderlinedButtons from '../components/UnderlinedButton';
 
 const meta: Meta = {
   title: 'UnderlinedButton',
@@ -9,4 +9,6 @@ const meta: Meta = {
 
 export default meta;
 
-export const First = () => <UnderlinedButtons>Search</UnderlinedButtons>;
+export function First() {
+  return <UnderlinedButtons>Search</UnderlinedButtons>;
+}

@@ -8,13 +8,6 @@ const Wrapper = styled('div')({
   flexGrow: '1',
 });
 
-interface FormProps {
-  defaultValues?: Address | null;
-  label?: string;
-  onFormSubmit: Function;
-  loading: boolean;
-}
-
 export interface Address {
   street?: string;
   city?: string;
@@ -23,18 +16,27 @@ export interface Address {
   country?: string;
 }
 
+interface FormProps {
+  defaultValues?: Address | null;
+  label?: string;
+  onFormSubmit: (values: Address) => void;
+  loading: boolean;
+}
+
+const StyledButton = styled(Button)({
+  width: '100%',
+});
+
 /**
  * returns a form styled by the grid system with fields for user input
  */
-const GridFormSubmit = (props: FormProps) => {
-  let { label = 'Submit' } = props;
-  const StyledButton = styled(Button)({
-    width: '100%',
-  });
-  if (props.loading) {
-    label = 'Loading';
-  }
-  const [values, setValues] = useState<Address | undefined>({
+function GridFormSubmit({
+  label = 'Submit',
+  loading,
+  onFormSubmit,
+  defaultValues,
+}: FormProps) {
+  const [values, setValues] = useState<Address>({
     street: '',
     city: '',
     region: '',
@@ -43,10 +45,10 @@ const GridFormSubmit = (props: FormProps) => {
   });
 
   useEffect(() => {
-    if (props.defaultValues !== null) {
-      setValues(props.defaultValues);
+    if (defaultValues != null) {
+      setValues(defaultValues);
     }
-  }, [props.defaultValues]);
+  }, [defaultValues]);
   /**
    * This is a function that gets the information
    * from the form and passes it to the parent component
@@ -59,7 +61,7 @@ const GridFormSubmit = (props: FormProps) => {
    */
   const onSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    props.onFormSubmit(values);
+    onFormSubmit(values);
   };
   /** The form accepts the values from the input of the user.
    * There is also a default label if there isn't a provided one.
@@ -71,11 +73,11 @@ const GridFormSubmit = (props: FormProps) => {
    * @param {string} props.country Name of the country
    */
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValues((prevValues) => {
-      return { ...prevValues, [e.target.name]: e.target.value };
-    });
+    setValues((prevValues) => ({
+      ...prevValues,
+      [e.target.name]: e.target.value,
+    }));
   };
-
   return (
     <Wrapper>
       <form onSubmit={onSubmitForm}>
@@ -89,7 +91,7 @@ const GridFormSubmit = (props: FormProps) => {
               variant="outlined"
               value={values?.street}
               onChange={handleInputChange}
-            ></TextField>
+            />
           </Grid>
           <Grid item xs={12} md={6}>
             <TextField
@@ -100,7 +102,7 @@ const GridFormSubmit = (props: FormProps) => {
               variant="outlined"
               value={values?.city}
               onChange={handleInputChange}
-            ></TextField>
+            />
           </Grid>
           <Grid xs={12} md={6} item>
             <TextField
@@ -111,7 +113,7 @@ const GridFormSubmit = (props: FormProps) => {
               variant="outlined"
               value={values?.region}
               onChange={handleInputChange}
-            ></TextField>
+            />
           </Grid>
           <Grid xs={12} md={6} item>
             <TextField
@@ -122,7 +124,7 @@ const GridFormSubmit = (props: FormProps) => {
               variant="outlined"
               value={values?.zip}
               onChange={handleInputChange}
-            ></TextField>
+            />
           </Grid>
           <Grid xs={12} md={6} item>
             <TextField
@@ -133,24 +135,20 @@ const GridFormSubmit = (props: FormProps) => {
               variant="outlined"
               value={values?.country}
               onChange={handleInputChange}
-            ></TextField>
+            />
           </Grid>
           <Grid xs={12} md={12} item>
-            <StyledButton
-              type="submit"
-              variant="outlined"
-              disabled={props.loading}
-            >
-              {label}
+            <StyledButton type="submit" variant="outlined" disabled={loading}>
+              {loading ? 'Loading' : label}
             </StyledButton>
             <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-              {props.loading && <CircularProgress />}
+              {loading && <CircularProgress />}
             </Box>
           </Grid>
         </Grid>
       </form>
     </Wrapper>
   );
-};
+}
 
 export default GridFormSubmit;
