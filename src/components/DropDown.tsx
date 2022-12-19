@@ -11,7 +11,12 @@ const StyledInput = styled(InputBase)({
   border: '1px solid black',
 });
 
-export default function DropDown({ id, label, options }: any) {
+interface Props {
+  label: string;
+  options: string[];
+}
+
+export default function DropDown({ label, options }: Props) {
   const [selection, setSelection] = useState('');
   const handleChange = (event: SelectChangeEvent) => {
     setSelection(event.target.value);
@@ -27,7 +32,7 @@ export default function DropDown({ id, label, options }: any) {
         input={<StyledInput />}
       >
         {options.map((option: string) => (
-          <MenuItem value={option} key={id}>
+          <MenuItem value={option} key={JSON.stringify(option)}>
             {option}
           </MenuItem>
         ))}
