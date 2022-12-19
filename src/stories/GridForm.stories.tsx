@@ -16,7 +16,7 @@ const logInfo = (props: Address) => {
   MyPromise.then().catch((err) => console.log(err));
 };
 const getInfo = async () => {
-  const promise = new Promise((resolve, reject) => {
+  const promise = new Promise((resolve) => {
     setTimeout(
       () =>
         resolve({
@@ -28,9 +28,9 @@ const getInfo = async () => {
         }),
       3000,
     );
-    setTimeout(() => reject(console.log('hi')), 5000);
   });
-  await promise.catch((err) => console.log(err));
+  const result = await promise.catch((err) => console.log(err));
+  return result;
 };
 
 export function FormWithDefaultValues() {

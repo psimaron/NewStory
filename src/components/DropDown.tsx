@@ -1,4 +1,4 @@
-/* import React, { useState } from 'react';
+import React, { useState } from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -6,37 +6,28 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import InputBase from '@mui/material/InputBase';
 import { styled } from '@mui/material/styles';
 
-export default function DropDown(props: any) {
-  const [name, setName] = useState('');
+const StyledInput = styled(InputBase)({
+  height: '37px',
+  border: '1px solid black',
+});
 
+export default function DropDown({ id, label, options }: any) {
+  const [selection, setSelection] = useState('');
   const handleChange = (event: SelectChangeEvent) => {
-    setName(event.target.value);
+    setSelection(event.target.value);
   };
-  const StyledInput = styled(InputBase)({
-    height: '37px',
-    border: '1px solid black',
-    '& .MuiPaper-root': {
-      '& .MuiList-root': {
-        '& .MuiButtonBase-root': {
-          '&:hover': {
-            backgroundColor: 'red',
-          },
-        },
-      },
-    },
-  });
 
   return (
-    <FormControl variant="outlined" fullWidth>
+    <FormControl fullWidth>
       <InputLabel>Age</InputLabel>
       <Select
-        value={name}
-        label="Name"
+        value={selection}
+        label={label}
         onChange={handleChange}
         input={<StyledInput />}
       >
-        {(props.Red, props.Green, props.Blue).map((option: string) => (
-          <MenuItem value={option} key={Math.random()}>
+        {options.map((option: string) => (
+          <MenuItem value={option} key={id}>
             {option}
           </MenuItem>
         ))}
@@ -44,5 +35,3 @@ export default function DropDown(props: any) {
     </FormControl>
   );
 }
-*/
-export {};

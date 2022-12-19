@@ -1,5 +1,5 @@
-/*import { TextField, Button } from '@mui/material';
-import React, { useState } from 'react';
+import { TextField, Button, CircularProgress, Box } from '@mui/material';
+import React, { useState, useEffect } from 'react';
 import { styled } from '@mui/material/styles';
 
 const Row = styled('div')(({ theme }) => ({
@@ -24,14 +24,34 @@ const Coll = styled('div')(({ theme }) => ({
     width: '100%',
   },
 }));
+export interface Address {
+  street?: string;
+  city?: string;
+  region?: string;
+  zip?: string;
+  country?: string;
+}
+
+interface FormProps {
+  defaultValues?: Address | null;
+  label?: string;
+  onFormSubmit: (values: Address) => void;
+  loading: boolean;
+}
+
+const StyledButton = styled(Button)({
+  width: '100%',
+});
 /**
  * returns a form styled by the grid system with fields for user input
  */
-/*
-function FormSubmit(props: any) {
-  const { label = 'Submit' } = props;
-
-  const [values, setValues] = useState({
+function FormSubmit({
+  label = 'Submit',
+  loading,
+  onFormSubmit,
+  defaultValues,
+}: FormProps) {
+  const [values, setValues] = useState<Address>({
     street: '',
     city: '',
     region: '',
@@ -39,9 +59,25 @@ function FormSubmit(props: any) {
     country: '',
   });
 
+  useEffect(() => {
+    if (defaultValues != null) {
+      setValues(defaultValues);
+    }
+  }, [defaultValues]);
+
+  /**
+   * This is a function that gets the information
+   * from the form and passes it to the parent component
+   * @callback onSubmitForm
+   * The parameters are of type: string, they are received
+   * from the input of the user or if not provided,
+   * they are passed by the @default defaultValues.
+   * It gets back an object @values with parameters @param street, @param city,
+   * @param region, @param zip, @param country
+   */
   const onSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    props.onFormSubmit(values);
+    onFormSubmit(values);
   };
   /** The form accepts the values from the input of the user.
    * There is also a default label if there isn't a provided one.
@@ -52,7 +88,7 @@ function FormSubmit(props: any) {
    * @param {string} props.zip Zip code of the country
    * @param {string} props.country Name of the country
    */
-/*
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setValues((prevValues) => ({
       ...prevValues,
@@ -122,14 +158,15 @@ function FormSubmit(props: any) {
         </Coll>
       </Row>
       <Row>
-        <Button sx={{ width: '100%' }} type="submit" variant="outlined">
-          {label}
-        </Button>
+        <StyledButton type="submit" variant="outlined" disabled={loading}>
+          {loading ? 'Loading' : label}
+        </StyledButton>
+        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+          {loading && <CircularProgress />}
+        </Box>
       </Row>
     </form>
   );
 }
 
 export default FormSubmit;
-*/
-export {};
