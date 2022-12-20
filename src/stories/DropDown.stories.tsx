@@ -10,16 +10,13 @@ const meta: Meta = {
 export default meta;
 
 const optionList = [
-  {
-    id: 1,
-    option: 'Red',
-  },
-  {
-    id: 2,
-    option: 'Blue',
-  },
+  { id: 1, option: 'Red' },
+  { id: 2, option: 'Blue' },
+  { id: 3, option: 'Green' },
+  { id: 4, option: 'Black' },
+  { id: 5, option: 'White' },
 ];
 
 export function Drop() {
-  return <DropDown label="Colors" list={optionList} />;
+  return <DropDown label="Colors" dropDownOptions={optionList} />;
 }

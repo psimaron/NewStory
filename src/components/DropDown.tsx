@@ -11,12 +11,26 @@ const StyledInput = styled(InputBase)({
   border: '1px solid black',
 });
 
-interface Props {
-  list: object[];
+const StyledMenuItem = styled(MenuItem)({
+  backgroundColor: 'white',
+  ':hover': {
+    ':nth-child(2n+1)': {
+      backgroundColor: 'red',
+    },
+  },
+});
+
+interface Options {
+  id: number;
+  option: string;
+}
+
+interface DropDownData {
+  dropDownOptions: Options[];
   label: string;
 }
 
-export default function DropDown({ list, label }: Props) {
+export default function DropDown({ dropDownOptions, label }: DropDownData) {
   const [selection, setSelection] = useState('');
   const handleChange = (event: SelectChangeEvent) => {
     setSelection(event.target.value);
@@ -31,10 +45,10 @@ export default function DropDown({ list, label }: Props) {
         onChange={handleChange}
         input={<StyledInput />}
       >
-        {list.map((element: any) => (
-          <MenuItem value={element.option} key={element.id}>
+        {dropDownOptions.map((element: Options) => (
+          <StyledMenuItem value={element.option} key={element.id}>
             {element.option}
-          </MenuItem>
+          </StyledMenuItem>
         ))}
       </Select>
     </FormControl>
