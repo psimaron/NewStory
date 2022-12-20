@@ -12,11 +12,11 @@ const StyledInput = styled(InputBase)({
 });
 
 interface Props {
+  list: object[];
   label: string;
-  options: string[];
 }
 
-export default function DropDown({ label, options }: Props) {
+export default function DropDown({ list, label }: Props) {
   const [selection, setSelection] = useState('');
   const handleChange = (event: SelectChangeEvent) => {
     setSelection(event.target.value);
@@ -31,9 +31,9 @@ export default function DropDown({ label, options }: Props) {
         onChange={handleChange}
         input={<StyledInput />}
       >
-        {options.map((option: string) => (
-          <MenuItem value={option} key={JSON.stringify(option)}>
-            {option}
+        {list.map((element: any) => (
+          <MenuItem value={element.option} key={element.id}>
+            {element.option}
           </MenuItem>
         ))}
       </Select>

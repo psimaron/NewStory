@@ -9,11 +9,17 @@ const meta: Meta = {
 
 export default meta;
 
-const optionList = {
-  label: 'Colors',
-  options: ['Red', 'Green', 'Blue'],
-};
+const optionList = [
+  {
+    id: 1,
+    option: 'Red',
+  },
+  {
+    id: 2,
+    option: 'Blue',
+  },
+];
 
 export function Drop() {
-  return <DropDown {...{ ...optionList }} />;
+  return <DropDown label="Colors" list={optionList} />;
 }
