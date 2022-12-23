@@ -12,21 +12,18 @@ const StyledInput = styled(InputBase)({
 });
 
 const StyledMenuItem = styled(MenuItem)({
-  backgroundColor: 'white',
   ':hover': {
-    ':nth-child(2n+1)': {
-      backgroundColor: 'red',
-    },
+    backgroundColor: 'red',
   },
 });
 
-interface Options {
+interface Option {
   id: number;
   option: string;
 }
 
 interface DropDownData {
-  dropDownOptions: Options[];
+  dropDownOptions: Option[];
   label: string;
 }
 
@@ -38,14 +35,9 @@ export default function DropDown({ dropDownOptions, label }: DropDownData) {
 
   return (
     <FormControl fullWidth>
-      <InputLabel>Age</InputLabel>
-      <Select
-        value={selection}
-        label={label}
-        onChange={handleChange}
-        input={<StyledInput />}
-      >
-        {dropDownOptions.map((element: Options) => (
+      <InputLabel variant="outlined">{label}</InputLabel>
+      <Select value={selection} onChange={handleChange} input={<StyledInput />}>
+        {dropDownOptions.map((element: Option) => (
           <StyledMenuItem value={element.option} key={element.id}>
             {element.option}
           </StyledMenuItem>
