@@ -7,20 +7,26 @@ import useSuperHeroSearch from './useSuperHeroSearch';
 export default function SuperHeroAutocomplete() {
   const [term, setTerm] = useState('');
   const { superHero, loading, error } = useSuperHeroSearch(term);
-  const handleChange = (e: any) => setTerm(e.target.value);
-  console.log(superHero, loading, error);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setTerm(e.target.value);
+  console.log(superHero, loading, error, term);
   return (
     <Autocomplete
-      value=""
+      onSelect={handleChange}
       selectOnFocus
       clearOnBlur
       handleHomeEndKeys
-      id="avengers"
       options={superHero}
-      renderOption={(option) => <li {...option}>Hi</li>}
+      getOptionLabel={(option) => option.name}
       renderInput={(option) => (
-        <TextField onChange={handleChange} {...option} label="Heroes">
-          <CircularProgress />
+        <TextField
+          helperText={error && 'There is an issue with your request'}
+          error={error}
+          onChange={handleChange}
+          {...option}
+          label="Heroes"
+        >
+          {loading && <CircularProgress />}
         </TextField>
       )}
     />

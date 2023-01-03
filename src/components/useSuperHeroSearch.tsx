@@ -1,32 +1,44 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 
-function useSuperHeroSearch(term: any) {
-  const [superHero, setSuperHero] = useState(['']);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
+function useSuperHeroSearch(term: string) {
+  const [superHero, setSuperHero] = useState([{ name: '', id: '' }]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
-    const options = {
+    /* const options = {
       method: 'GET',
       url: 'https://superhero-search.p.rapidapi.com/api/',
       params: { hero: term },
       headers: {
-        'X-RapidAPI-Key': '0bc116f760mshc0b7d82293c0c2ep1e3397jsn632a8f5d22b2',
+        'X-RapidAPI-Key': '59f0db3649msh4cb00124f5c8564p191a6cjsnc468d27648d7',
         'X-RapidAPI-Host': 'superhero-search.p.rapidapi.com',
       },
-    };
-    if (term.length >= 3) {
-      axios
-        .request(options)
-        .then((response: any) => {
-          setSuperHero(response.data.name);
+    }; */
+    const timer = setTimeout(() => {
+      if (term.length >= 3) {
+        setLoading(true);
+        fetch('https://superhero-search.p.rapidapi.com/api/heroes', {
+          method: 'GET',
+          headers: {
+            'X-RapidAPI-Key':
+              '59f0db3649msh4cb00124f5c8564p191a6cjsnc468d27648d7',
+            'X-RapidAPI-Host': 'superhero-search.p.rapidapi.com',
+          },
         })
-        .catch((error: any) => {
-          setError(error);
-        });
-      setLoading(false);
-    }
+          .then((response: any) => response.json())
+          .then((json) => setSuperHero(json))
+          .catch((error: any) => {
+            setError(true);
+            console.log(error);
+          })
+          .finally(() => setLoading(false));
+      }
+    }, 2000);
+    return () => {
+      clearTimeout(timer);
+    };
   }, [term]);
   return { superHero, loading, error };
 }
