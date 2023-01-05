@@ -1,25 +1,39 @@
-import React, { useState } from 'react';
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
-import { CircularProgress } from '@mui/material';
+import React from 'react';
+import {
+  TextField,
+  CircularProgress,
+  Autocomplete,
+  InputAdornment,
+} from '@mui/material';
 import useCarSearch from './useCarSearch';
-import { validateHeaderValue } from 'http';
 
-export default function SearchCarAutocomplete() {
-  const [selected, setSelected] = useState('');
+export interface TextCustomise {
+  label?: string;
+}
+
+export default function SearchCarAutocomplete(props: TextCustomise) {
   const { cars, loading, error, search } = useCarSearch();
-  const handleChange = (e: any) => {
-    setSelected(e.target.value);
-    console.log(selected);
+  const { label = 'Cars' } = props;
+
+  let throttlePause: boolean;
+  const throttle = (event: any, value: string) => {
+    if (throttlePause) return;
+    throttlePause = true;
+    setTimeout(() => {
+      if (value.length >= 3) {
+        search(value);
+      }
+      throttlePause = false;
+    }, 300);
   };
+
   return (
     <Autocomplete
-      onInputChange={(event, value) => {
-        if (value.length >= 3) {
-          search(value);
-        }
+      onInputChange={(event, value) => throttle(event, value)}
+      onChange={(event, value) => {
+        const selectedOption = value;
+        return selectedOption;
       }}
-      onChange={handleChange}
       selectOnFocus
       clearOnBlur
       handleHomeEndKeys
@@ -31,11 +45,18 @@ export default function SearchCarAutocomplete() {
         <TextField
           helperText={error && 'There is an issue with your request'}
           error={error}
+          label={label}
           {...option}
-          label="Cars"
-        >
-          {loading && <CircularProgress />}
-        </TextField>
+          InputProps={{
+            ...option.InputProps,
+            endAdornment: (
+              <InputAdornment position="end">
+                {loading && <CircularProgress />}
+                {option.InputProps.endAdornment}
+              </InputAdornment>
+            ),
+          }}
+        />
       )}
     />
   );
