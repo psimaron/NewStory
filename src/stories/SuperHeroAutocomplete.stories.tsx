@@ -1,14 +1,14 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
-import SearchCarAutocomplete from '../components/SearchCarAutocomplete';
+import SuperHeroAutocomplete from '../components/SuperHeroAutocomplete';
 
 const meta: Meta = {
   title: 'Autocomplete',
-  component: SearchCarAutocomplete,
+  component: SuperHeroAutocomplete,
 };
 
 export default meta;
 
 export function Autocomplete() {
-  return <SearchCarAutocomplete />;
+  return <SuperHeroAutocomplete />;
 }
