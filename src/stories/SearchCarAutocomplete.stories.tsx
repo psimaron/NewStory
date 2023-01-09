@@ -10,5 +10,5 @@ const meta: Meta = {
 export default meta;
 
 export function Autocomplete() {
-  return <SearchCarAutocomplete />;
+  return <SearchCarAutocomplete textFieldProps={{ label: 'Hello' }} />;
 }
